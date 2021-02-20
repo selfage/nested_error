@@ -1,9 +1,7 @@
-import { CustomError } from "ts-custom-error";
-
-export class NestedError extends CustomError {
+export class NestedError extends Error {
   public constructor(message?: string, public cause?: any) {
     super(message);
-    // this.name = '123123';
+    this.name = new.target.name;
 
     // stack is a non-standard property though supported in most cases.
     if (this.stack && this.cause) {
