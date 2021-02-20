@@ -1,7 +1,7 @@
 {
   "name": "@selfage/nested_error",
-  "version": "0.0.1",
-  "description": "Http-based client library for web pages.",
+  "version": "1.0.0",
+  "description": "Builds nested errors while preserving stacks.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/selfage/nested_error.git"
