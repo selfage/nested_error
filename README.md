@@ -8,10 +8,6 @@
 
 Written in TypeScript and compiled to ES6 with inline source map & source. See [@selfage/tsconfig](https://www.npmjs.com/package/@selfage/tsconfig) for full compiler options. Provides a simple implementation to take an error as the cause and output nested stacks with "Caused by: ".
 
-With ES6, we simply extend native `Error` class, without fixing issues such as [broken prototype chain](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work), and thus could bring compatibility issue to browsers. Use if you don't care.
-
-Also note that we have overridden `stack` property in constructor. Later modification of `name` property doesn't affect `stack`.
-
 ## Nested error
 
 Supply an existing error as the cause like the following.
@@ -89,9 +85,11 @@ Caused by: Error: Failure
     ...
 ```
 
-## Known limitations
+## Caveats
 
-Class name might be mangled by minification. There is no easy fix unless you exclude them from being mangled. Setting `name` property in subclasses doesn't help because the constructor of `NestedError` already finalized `stack` property in case of V8 environment.
+With ES6, we simply extend native `Error` class, without fixing issues such as [broken prototype chain](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work), and thus could bring compatibility issue to browsers. Use if you don't care.
+
+Class name might be mangled by minification. There is no easy fix unless you exclude them from being mangled. Setting `name` property in subclasses doesn't help because the constructor of `NestedError` already finalized `stack` property at least in case of V8 environment.
 
 ## Stack trace from TypeScript source file
 
