@@ -1,6 +1,6 @@
 {
   "name": "@selfage/nested_error",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Builds nested errors while preserving stacks.",
   "repository": {
     "type": "git",
