@@ -3,7 +3,8 @@ export class NestedError extends Error {
     super(message);
     this.name = new.target.name;
 
-    // stack is a non-standard property though supported in most cases.
+    // stack is a non-standard property that its implementation is not in
+    // specification.
     if (this.stack && this.cause) {
       if (this.cause.stack) {
         this.stack = this.stack + "\nCaused by: " + cause.stack;

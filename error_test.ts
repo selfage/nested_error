@@ -1,5 +1,5 @@
 import { NestedError } from "./error";
-import { assertThat, eqError } from "@selfage/test_matcher";
+import { assert, assertThat, eqError } from "@selfage/test_matcher";
 import { TEST_RUNNER } from "@selfage/test_runner";
 
 TEST_RUNNER.run({
@@ -13,6 +13,7 @@ TEST_RUNNER.run({
 
         // Verify
         assertThat(e, eqError(new NestedError("standalone")), `e`);
+        assert(e instanceof Error, "of Error type", "not");
       },
     },
     {
@@ -48,7 +49,6 @@ TEST_RUNNER.run({
           }
         }
         let e = new AError("more context", new Error("inside"));
-        console.log(e.stack);
 
         // Verify
         assertThat(e, eqError(new AError("more context")), `e`);
