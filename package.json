@@ -1,6 +1,6 @@
 {
   "name": "@selfage/nested_error",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Builds nested errors while preserving stacks.",
   "repository": {
     "type": "git",
@@ -10,7 +10,8 @@
     "Error",
     "Nested",
     "Chained",
-    "Custom"
+    "Custom",
+    "TypeScript"
   ],
   "author": "Yuxuan Xie <teststaybaka@gmail.com> (http://www.yuxuanxie.com)",
   "license": "GPL-3.0-or-later",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/selfage/nested_error#readme",
   "main": "./error.js",
   "types": "./error.d.ts",
+  "files": ["**/*.d.ts", "**/*.js", "!**/*_test.*"],
   "devDependencies": {
     "@selfage/test_matcher": "^1.0.3",
     "@selfage/test_runner": "^1.0.4",
