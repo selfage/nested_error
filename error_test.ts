@@ -1,4 +1,4 @@
-import { NestedError } from "./error";
+import { StdError } from "./error";
 import { assert, assertThat, eqError } from "@selfage/test_matcher";
 import { TEST_RUNNER } from "@selfage/test_runner";
 
@@ -6,53 +6,38 @@ TEST_RUNNER.run({
   name: "ErrorTest",
   cases: [
     {
-      name: "StandaloneError",
+      name: "StdError",
       execute: () => {
         // Execute
-        let e = new NestedError("standalone error");
+        let e = new StdError("standalone error");
 
         // Verify
-        assertThat(e, eqError(new NestedError("standalone")), `e`);
+        assertThat(e, eqError(new StdError("standalone")), `e`);
         assert(e instanceof Error, "of Error type", "not");
       },
     },
     {
-      name: "NestedError",
+      name: "StdError",
       execute: () => {
         // Execute
-        let e = new NestedError("more context", new Error("inside"));
+        let e = new StdError("more context", new Error("inside"));
 
         // Verify
-        assertThat(e, eqError(new NestedError("more context")), `e`);
+        assertThat(e, eqError(new StdError("more context")), `e`);
       },
     },
     {
       name: "ThreeLayer",
       execute: () => {
         // Execute
-        let e = new NestedError(
+        let e = new StdError(
           "Even more",
-          new NestedError("more context", new Error("inside"))
+          new StdError("more context", new Error("inside"))
         );
 
         // Verify
-        assertThat(e, eqError(new NestedError("Even more")), `e`);
+        assertThat(e, eqError(new StdError("Even more")), `e`);
       },
-    },
-    {
-      name: "Subclass",
-      execute: () => {
-        // Execute
-        class AError extends NestedError {
-          public constructor(message?: string, cause?: any) {
-            super(message, cause);
-          }
-        }
-        let e = new AError("more context", new Error("inside"));
-
-        // Verify
-        assertThat(e, eqError(new AError("more context")), `e`);
-      },
-    },
+    }
   ],
 });
