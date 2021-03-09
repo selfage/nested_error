@@ -85,7 +85,9 @@ Note that you need to pass the class name to `super()` because of minification.
 
 `StdError` is the simplest subclass of `NestedError`. All subclasses of `NestedError` require their names to be explicitly passed into `super()`, such that even if class names are minified/mangled, stacks still show the right error names.
 
-## Caveats
+However, the downside is that subclasses of `StdError` cannot change their error names.
+
+## Compatibility
 
 With ES6, we can simply extend native `Error` class, without the need to fix issues such as [broken prototype chain](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work).
 
